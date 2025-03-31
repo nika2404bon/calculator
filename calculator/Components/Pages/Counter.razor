@@ -1,0 +1,109 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+<tr>@Input</tr>
+@Result_2
+<table class="Kalktable">
+    <tr>
+        <td><button @onclick="Input7">7</button></td>
+        <td><button @onclick="Input8">8</button></td>
+        <td><button @onclick="Input9">9</button></td>
+        <td><button @onclick="Inputmultiply">*</button></td>
+    </tr>    
+    <tr>
+        <td><button @onclick="Input4">4</button></td>
+        <td><button @onclick="Input5">5</button></td>
+        <td><button @onclick="Input6">6</button></td>
+        <td><button @onclick="Inputminus">-</button></td>
+    </tr>    
+    <tr>
+        <td><button @onclick="Input1">1</button></td>
+        <td><button @onclick="Input2">2</button></td>
+        <td><button @onclick="Input3">3</button></td>
+        <td><button @onclick="Inputplus">+</button></td>
+    </tr>    
+    <tr>
+        <td><button @onclick="Inputshare">/</button></td>
+        <td><button @onclick="Input0">0</button></td>
+        <td><button @onclick="RemoveNumber">DELETE</button></td>
+        <td><button @onclick="Ravno">=</button></td>
+    </tr>
+</table>
+@code {
+    public string Input { get; set; }
+    public string FirstNumber { get; set; }
+    public string SecondNumber { get; set; }
+    public string[] Input_2 { get; set; }
+    public double Result { get; set; }
+    public string Result_2 { get; set; }
+    
+    public void Input0()
+    {Input = string.Concat(Input, "0");}     
+    public void Input1()
+    {Input = string.Concat(Input, "1");}    
+    public void Input2()
+    {Input = string.Concat(Input, "2");}    
+    public void Input3()
+    {Input = string.Concat(Input, "3");}    
+    public void Input4()
+    {Input = string.Concat(Input, "4");}    
+    public void Input5()
+    {Input = string.Concat(Input, "5");}    
+    public void Input6()
+    {Input = string.Concat(Input, "6");}   
+    public void Input7()
+    {Input = string.Concat(Input, "7");}    
+    public void Input8()
+    {Input = string.Concat(Input, "8");}    
+    public void Input9()
+    {Input = string.Concat(Input, "9");}    
+    public void Inputplus()
+    {Input = string.Concat(Input, "+");}    
+    public void Inputminus()
+    {Input = string.Concat(Input, "-");}    
+    public void Inputmultiply()
+    {Input = string.Concat(Input, "*");}    
+    public void Inputshare()
+    {Input = string.Concat(Input, "/");}
+    
+    public void RemoveNumber()
+    {
+        Input = string.Empty;
+        Result_2 = string.Empty;
+    }
+
+    public void Ravno()
+    {
+        if (Input.Contains("+"))
+        {
+        Input_2 = Input.Split("+");
+        FirstNumber = Input_2[0];
+        SecondNumber = Input_2[1];
+        Result = Convert.ToDouble(FirstNumber) + Convert.ToDouble(SecondNumber);
+        Result_2 = Convert.ToString(Result);
+        }
+        if (Input.Contains("-"))
+        {
+            Input_2 = Input.Split("-");
+            FirstNumber = Input_2[0];
+            SecondNumber = Input_2[1];
+            Result = Convert.ToDouble(FirstNumber) - Convert.ToDouble(SecondNumber);
+            Result_2 = Convert.ToString(Result);
+        }        
+        if (Input.Contains("*"))
+        {
+            Input_2 = Input.Split("*");
+            FirstNumber = Input_2[0];
+            SecondNumber = Input_2[1];
+            Result = Convert.ToDouble(FirstNumber) * Convert.ToDouble(SecondNumber);
+            Result_2 = Convert.ToString(Result);
+        }        
+        if (Input.Contains("/"))
+        {
+            Input_2 = Input.Split("/");
+            FirstNumber = Input_2[0];
+            SecondNumber = Input_2[1];
+            Result = Convert.ToDouble(FirstNumber) / Convert.ToDouble(SecondNumber);
+            Result_2 = Convert.ToString(Result);
+        }
+    }
+}
